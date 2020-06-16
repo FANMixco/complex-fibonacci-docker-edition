@@ -6,6 +6,15 @@ services:
             - POSTGRES_PASSWORD=postgres_password
     redis:
         image: 'redis:latest'
+    #routing traffic
+    nginx:
+        restart: always
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./nginx
+        ports:
+            #local port to internal
+            - '3050:80'
     api:
         build:
             dockerfile: Dockerfile.dev
@@ -24,6 +33,7 @@ services:
             - PGPASSWORD=postgres_password
             - PGPORT=5432
     client:
+        stdin_open: true
         build:
             dockerfile: Dockerfile.dev
             context: ./client
