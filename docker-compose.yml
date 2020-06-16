@@ -6,7 +6,7 @@ services:
             - POSTGRES_PASSWORD=postgres_password
     redis:
         image: 'redis:latest'
-    server:
+    api:
         build:
             dockerfile: Dockerfile.dev
             context: ./server
@@ -23,3 +23,21 @@ services:
             - PGDATABASE=postgres
             - PGPASSWORD=postgres_password
             - PGPORT=5432
+    client:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./client
+        volumes:
+            #don't overwrite it!
+            - /app/node_modules
+            #redirect to the app in the server folder
+            - ./client:/app
+    worker:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./worker
+        volumes:
+            #don't overwrite it!
+            - /app/node_modules
+            #redirect to the app in the server folder
+            - ./worker:/app
