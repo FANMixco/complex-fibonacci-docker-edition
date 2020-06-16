@@ -15,9 +15,9 @@ const { Pool } = require('pg');
 const pgClient = new Pool({
     user: keys.pgUser,
     host: keys.pgHost,
-  database: keys.pgDatabase,
-  password: keys.pgPassword,
-  port: keys.pgPort,
+    database: keys.pgDatabase,
+    password: keys.pgPassword,
+    port: keys.pgPort,
 });
 
 pgClient.on('connect', () => {
@@ -38,7 +38,6 @@ const redisClient = redis.createClient({
 const redisPublisher = redisClient.duplicate();
 
 // express route handlers
-
 app.get('/', (req, res) => {
     res.send('Hi');
 });
