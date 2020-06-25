@@ -1,0 +1,31 @@
+#super user permissions
+sudo: required
+language: generic
+services:
+    - docker
+
+before_install:
+    # . is the current directory
+    # -t tag
+    - docker build -t fanmixco/complex-fibonacci-docker-edition-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true fanmixco/complex-fibonacci-docker-edition-test npm run test
+
+after_success:
+    - docker build -t fanmixco/complex-fibonacci-docker-edition-client ./client
+    - complex-fibonacci-docker-edition-nginx ./nginx
+    - docker build -t complex-fibonacci-docker-edition-server ./server
+    - complex-fibonacci-docker-edition-worker ./worker
+    # Log in to docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Move those images and push them to Docker Hub.
+    - docker push fanmixco/complex-fibonacci-docker-edition-client
+    - docker push fanmixco/complex-fibonacci-docker-edition-nginx
+    - docker push fanmixco/complex-fibonacci-docker-edition-server
+    - docker push fanmixco/complex-fibonacci-docker-edition-worker
+
+
+
+#deploy:
+#
