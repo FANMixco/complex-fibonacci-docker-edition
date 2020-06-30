@@ -1,7 +1,6 @@
 {
     "AWSEBDockerrunVersion": 2,
-    "containerDefinitions": 
-    [
+    "containerDefinitions": [
         {
             "name": "client",
             "image": "fanmixco/complex-fibonacci-docker-edition-client",
