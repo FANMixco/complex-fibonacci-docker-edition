@@ -5,7 +5,8 @@
             "name": "client",
             "image": "fanmixco/complex-fibonacci-docker-edition-client",
             "hostname": "client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "server",
