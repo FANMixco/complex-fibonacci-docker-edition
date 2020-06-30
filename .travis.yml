@@ -33,7 +33,7 @@ after_success:
 #- is an array
 
 deploy:
-    edge: true
+    #edge: true
     provider: elasticbeanstalk
     region: "us-east-2"
     #app name
