@@ -41,7 +41,7 @@ deploy:
     env: "MultiDocker-env"
     #s3-storage
     bucket_name: "elasticbeanstalk-us-east-2-195243960488"
-    bucket_path: "docker-multi"
+    bucket_path: "docker-multi-v2"
     on:
         branch: master
     access_key_id: $AWS_ACCESS_KEY
