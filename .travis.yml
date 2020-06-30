@@ -25,13 +25,8 @@ after_success:
     - docker push fanmixco/complex-fibonacci-docker-edition-server
     - docker push fanmixco/complex-fibonacci-docker-edition-worker
 
-
-
 #deploy:
-#
-
 #- is an array
-
 deploy:
     #edge: true
     provider: elasticbeanstalk
